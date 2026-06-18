@@ -41,41 +41,43 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-gray-900 rounded-2xl p-8 shadow-xl border border-gray-800">
-        
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl bg-slate-900 rounded-2xl p-8 shadow-xl border border-slate-800">
+
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white text-center">AI Text Detector</h1>
-          <p className="text-gray-400 text-sm mt-1 text-center">
+          <h1 className="text-2xl font-bold text-slate-100 text-center">AI Text Detector</h1>
+          <p className="text-slate-400 text-sm mt-2 text-center">
             Paste any text and find out if it was written by a human or AI.
           </p>
         </div>
 
         {/* Textarea */}
         <textarea
-          className="w-full mt-5 h-48 bg-gray-800 text-gray-100 rounded-xl p-4 text-sm resize-none outline-none border border-gray-700 focus:border-gray-500 transition-colors placeholder-gray-500"
+          className="w-full h-48 bg-slate-800/60 text-slate-100 rounded-xl p-4 text-sm leading-relaxed resize-none outline-none border border-slate-700 focus:border-indigo-500 transition-colors placeholder-slate-500"
           placeholder="Paste your text here..."
           value={text}
           onChange={e => {
-            setText(e.target.value) 
+            setText(e.target.value)
             setError("") }}
         />
 
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
 
-        {/* Button */}
-        <button className="mt-10 w-full bg-white text-gray-950 font-semibold py-3 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer"
-         onClick={handleAnalyze}
-         disabled={loading}
-         >
-          {loading ? "Analyzing..." : "Analyze"}
-        </button>
+        {/* Buttons */}
+        <div className="flex gap-3 mt-5">
+          <button className="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-500 active:bg-indigo-700 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+           onClick={handleAnalyze}
+           disabled={loading}
+           >
+            {loading ? "Analyzing..." : "Analyze"}
+          </button>
 
-        <button className="mt-10 w-full bg-white text-gray-950 font-semibold py-3 rounded-xl hover:bg-gray-200 transition-colors cursor-pointer"
-         onClick={handleClear}>
-          Clear
-        </button>
+          <button className="px-6 bg-transparent text-slate-300 font-medium py-3 rounded-xl border border-slate-700 hover:bg-slate-800 hover:text-slate-100 transition-colors cursor-pointer"
+           onClick={handleClear}>
+            Clear
+          </button>
+        </div>
 
         {visible && result && <Result
         typeText={result.label}
